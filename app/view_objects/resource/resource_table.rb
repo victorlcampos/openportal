@@ -24,7 +24,7 @@ class Resource::ResourceTable < Table
   def column_names
     return @column_names if @column_names
 
-    @column_names = @index_attributes - @exclude_index_attributes
+    @column_names = get_resource_attributes
 
     @column_names << '' if can_view?
     @column_names << '' if can_edit?
@@ -32,26 +32,38 @@ class Resource::ResourceTable < Table
   end
 
   def column_values
-    @column_values if @column_values
+    @column_values ||= get_column_values
+  end
 
+  private
+
+  def get_column_values
     columns = {}
 
     resources.each do |resource|
       columns[resource] = []
-
-      (@index_attributes - @exclude_index_attributes).each do |attribute|
-        columns[resource] << resource.send(attribute)
-      end
-
-      columns[resource] << link_to(t('form.view')  , url_for(resource)) if can_view?
-      columns[resource] << link_to(t('form.edit')  , url_for([:edit, resource])) if can_edit?
-      columns[resource] << link_to(t('form.delete'), url_for(resource), method: 'delete')
+      set_attribute_columns(resource, columns[resource])
+      set_action_columns(resource, columns[resource])
     end
 
-    @column_values = columns
+    columns
   end
 
-  private
+  def set_attribute_columns(resource, columns)
+    get_resource_attributes.each do |attribute|
+      columns << resource.send(attribute)
+    end
+  end
+
+  def set_action_columns(resource, columns)
+    columns << link_to(t('form.view')  , url_for(resource)) if can_view?
+    columns << link_to(t('form.edit')  , url_for([:edit, resource])) if can_edit?
+    columns << link_to(t('form.delete'), url_for(resource), method: 'delete')
+  end
+
+  def get_resource_attributes
+    @index_attributes - @exclude_index_attributes
+  end
 
   def initialize_filters
     @index_filter_attributes - @exclude_index_filter_attributes
