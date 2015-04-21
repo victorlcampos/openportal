@@ -7,23 +7,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :verify_permission
 
-  before_action -> { can_view? }  , only: [:index, :show]
+  before_action -> { can_view? }, only: [:index, :show]
   before_action -> { can_create? }, only: [:new,   :create]
-  before_action -> { can_edit? }  , only: [:edit,  :update]
+  before_action -> { can_edit? }, only: [:edit,  :update]
   before_action -> { can_delete? }, only: [:destry]
 
-  before_action :before_index  , only: [:index  ]
-  before_action :before_show   , only: [:show   ]
-  before_action :before_new    , only: [:new    ]
-  before_action :before_create , only: [:create ]
-  before_action :before_edit   , only: [:edit   ]
-  before_action :before_update , only: [:update ]
+  before_action :before_index, only: [:index]
+  before_action :before_show, only: [:show]
+  before_action :before_new, only: [:new]
+  before_action :before_create, only: [:create]
+  before_action :before_edit, only: [:edit]
+  before_action :before_update, only: [:update]
   before_action :before_destroy, only: [:destroy]
 
-
   before_action :find_all_resources, only: [:index]
-  before_action :find_resource     , only: [:show, :edit, :update, :destroy]
-  before_action :build_resource    , only: [:new]
+  before_action :find_resource, only: [:show, :edit, :update, :destroy]
+  before_action :build_resource, only: [:new]
   before_action :build_resource_from_params, only: [:create]
 
   helper_method :snake_case_model_name, :index_attributes, :exclude_index_attributes,
@@ -33,7 +32,9 @@ class ApplicationController < ActionController::Base
                 :exclude_form_attributes, :namespaces, :model_class
 
   def index; end
+
   def show; end
+
   def new; end
 
   def create
@@ -62,19 +63,22 @@ class ApplicationController < ActionController::Base
   protected
 
   def before_index; end
+
   def before_show; end
+
   def before_new; end
+
   def before_create; end
+
   def before_edit; end
+
   def before_update; end
+
   def before_destroy; end
 
-  def verify_permission(permission=nil)
+  def verify_permission(permission = nil)
     permission ||= OPEN_PORTAL_PERMISSIONS_BY_CONTROLLER["#{controller_name}##{action_name}"]
-
-    if permission && (!current_user || !current_user.can?(permission))
-      render_401 and return
-    end
+    (render_401 && return) if permission && (!current_user || !current_user.can?(permission))
   end
 
   def safe_params
@@ -86,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def snake_case_model_name
-    model_name.split('::')[-1].gsub(/(.)([A-Z])/,'\1_\2').downcase.to_sym
+    model_name.split('::')[-1].gsub(/(.)([A-Z])/, '\1_\2').downcase.to_sym
   end
 
   def namespaces
@@ -102,22 +106,22 @@ class ApplicationController < ActionController::Base
     @resources = @q.result
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def index_attributes
     @index_attributes ||= model_class.attribute_names
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def exclude_index_attributes
-    ["_id", "created_at", "updated_at"]
+    %w(_id created_at updated_at)
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def index_filter_attributes
     index_attributes
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def exclude_index_filter_attributes
     exclude_index_attributes
   end
@@ -126,24 +130,24 @@ class ApplicationController < ActionController::Base
     @show_attributes ||= model_class.attribute_names
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def exclude_show_attributes
     []
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def form_attributes
     @form_attributes ||= model_class.attribute_names
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def form_attributes_config
     {}
   end
 
-  # TODO - Faze ser configurável pelo usuário
+  # TODO: Faze ser configuravel pelo usuario
   def exclude_form_attributes
-    ["id", "created_at", "updated_at"]
+    %w(id created_at updated_at)
   end
 
   def find_resource
@@ -153,7 +157,7 @@ class ApplicationController < ActionController::Base
   end
 
   def build_resource
-    @resource = model_class.new()
+    @resource = model_class.new
   end
 
   def build_resource_from_params

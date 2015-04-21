@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'axlsx_rails'
 gem 'whenever'
 
+# plugins
+gem 'open_portal_clients', path: '../open_portal_clients'
+
 # forms
 gem 'simple_form'
 gem "cocoon"
@@ -42,7 +45,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'pry'
+  gem 'brakeman'
+  gem 'rubocop'
+  gem 'metric_fu'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

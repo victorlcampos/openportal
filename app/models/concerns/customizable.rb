@@ -13,14 +13,13 @@ module Customizable
 
   class_methods do
     def customizable_model_name
-      @customizable_model_name ||= self.to_s.split('::')[-1].gsub(/(.)([A-Z])/,'\1_\2').downcase.pluralize.to_sym
+      @customizable_model_name ||= name.split('::')[-1].gsub(/(.)([A-Z])/,'\1_\2').downcase.pluralize.to_sym
     end
 
     def available_custom_fields
       CustomField.where(customizable_model_name: customizable_model_name)
     end
   end
-
 
   def available_custom_fields
     @available_custom_fields ||= self.class.available_custom_fields
@@ -29,42 +28,54 @@ module Customizable
   private
 
   def fields_values
-    return @fields_values if @fields_values
-    @fields_values = {}
+    @fields_values ||= initialize_fields_values
+  end
+
+  def initialize_fields_values
+    values = {}
 
     available_custom_fields.each do |cf|
-      found = false
+      next if find_and_initialize_custom_field_value(cf, values)
 
-      self.custom_fields_values.each do |cfv|
-        if cf.id == cfv.custom_field_id
-          @fields_values[cf.id] = cfv
-          found = true
-          break
-        end
-      end
-
-      next if found
-
-      cfv = self.custom_fields_values.build(custom_field_id: cf.id)
-      @fields_values[cf.id] = cfv
+      cfv = custom_fields_values.build(custom_field_id: cf.id)
+      values[cf.id] = cfv
     end
 
-    @fields_values
+    values
+  end
+
+  def find_and_initialize_custom_field_value(cf, values)
+    custom_fields_values.each do |cfv|
+      next unless cf.id == cfv.custom_field_id
+
+      values[cf.id] = cfv
+      return true
+    end
+
+    false
   end
 
   def create_custom_field_methods
     fields_values.each do |cf_id, cfv|
       next if cfv.field_name.blank? || respond_to?(cfv.field_name)
 
-      self.class.send(:define_method, cfv.field_name) do
-        fields_values[cf_id].value
-      end
+      define_getter(cf_id, cfv)
 
       next if cfv.field_type == 'formula'
 
-      self.class.send(:define_method, "#{cfv.field_name}=") do |value|
-        fields_values[cf_id].value = value
-      end
+      define_setter(cf_id, cfv)
+    end
+  end
+
+  def define_getter(cf_id, cfv)
+    self.class.send(:define_method, cfv.field_name) do
+      fields_values[cf_id].value
+    end
+  end
+
+  def define_setter(cf_id, cfv)
+    self.class.send(:define_method, "#{cfv.field_name}=") do |value|
+      fields_values[cf_id].value = value
     end
   end
 
