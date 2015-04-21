@@ -4,7 +4,6 @@ gem 'axlsx_rails'
 gem 'whenever'
 
 # plugins
-gem 'open_portal_clients', path: '../open_portal_clients'
 
 # forms
 gem 'simple_form'
