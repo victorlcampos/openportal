@@ -161,16 +161,16 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-      format.xml  { head :not_found }
-      format.any  { head :not_found }
-    end
+    render_status("#{Rails.root}/public/404", :not_found)
   end
 
   def render_401
+    render_status("#{Rails.root}/public/401", 403)
+  end
+
+  def render_status(file, status)
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/401", :layout => false, :status => 403 }
+      format.html { render file: file, layout: false, status: status }
       format.xml  { head :not_found }
       format.any  { head :not_found }
     end
