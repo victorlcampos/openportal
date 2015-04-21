@@ -1,0 +1,18 @@
+<ul class='menu'>
+  <li><%= link_to 'HOME', '/', class: 'btn '%>
+    <ul>
+      <% OPEN_PORTAL_MENUS[:user].each do |menu_name, menu_configuration| %>
+        <% if !menu_configuration[:permission] || current_user.can?(menu_configuration[:permission]) %>
+          <li>
+            <%= link_to t("menu.#{menu_name}"), menu_configuration[:url] %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if current_user.can?('admin') %>
+        <li>
+          <%= link_to t("menu.admin"), admin_index_path %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

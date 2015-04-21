@@ -1,0 +1,11 @@
+<%= simple_form_for resource do |f| %>
+  <%= f.input :name %>
+
+  <% OPEN_PORTAL_PERMISSIONS.each do |key, permissions| %>
+    <h4><%= t("permissions.#{key}") %></h4>
+    <%= f.input 'permissions', as: :check_boxes, collection: permissions, label: false %>
+  <% end %>
+
+  <%= f.association :users,   as: :check_boxes %>
+  <%= f.button :submit %>
+<% end %>

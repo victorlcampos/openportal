@@ -1,0 +1,7 @@
+<div class="toolbar">
+  <div>
+    <% toolbar_links.each do |toolbar_link| %>
+      <%= link_to toolbar_link[:name], toolbar_link[:url], class: 'btn' %>
+    <% end %>
+  </div>
+</div>

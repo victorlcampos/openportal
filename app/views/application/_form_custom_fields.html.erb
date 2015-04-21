@@ -1,0 +1,15 @@
+<% if resource.respond_to? :available_custom_fields %>
+  <% resource.available_custom_fields.each do |cf| %>
+    <% unless cf.field_type == 'formula' %>
+
+      <% if CustomField::ASSOCIABLE_MODEL_NAMES.include? cf.field_type.to_sym %>
+        <%= f.input cf.field_name, as: :select, collection: cf.field_class.all %>
+      <% elsif cf.allowed_values.blank? %>
+        <%= f.input cf.field_name, as: cf.field_type  %>
+      <% else %>
+        <%= f.input cf.field_name, as: cf.field_type, collection: cf.allowed_values  %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>

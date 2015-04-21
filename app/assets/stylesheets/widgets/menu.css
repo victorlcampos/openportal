@@ -1,0 +1,48 @@
+.icon-menus {
+  border: 1px solid #E4E4E4;
+  padding: 25px 15px 25px 10px;
+}
+.icon-menus .menu {
+  padding: 10px 10px 20px 10px;
+  width: 65px;
+  display: table-cell;
+}
+
+.menu {
+  list-style:none;
+  display: inline-block;
+}
+
+.menu li {
+  position:relative;
+  text-align: center;
+  font-size: 80%;
+}
+
+.menu li a {
+  color: #444;
+  text-decoration:none;
+  padding:5px 10px;
+  display:block;
+}
+
+.menu li a:hover {
+  background:#444;
+  color:#fff;
+}
+
+.menu li a.btn {
+  padding:15px 30px;
+}
+
+.menu li   ul{
+  position:absolute;
+  top:25px;
+  left:0;
+  background-color:#fff;
+  display:none;
+}
+
+.menu li:hover ul, .menu li.over ul { display:block; z-index: 100;}
+
+.menu li ul li { border:1px solid #E4E4E4; display:block; width:210px; }

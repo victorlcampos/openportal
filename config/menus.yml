@@ -1,0 +1,49 @@
+admin:
+  user:
+    icon: manage_users.png
+    submenus:
+      create_user:
+        permission: create_users
+        url:
+          controller: users
+          action: new
+      manage_users:
+        permission: list_users
+        url:
+          controller: users
+          action: index
+  permissions_group:
+    icon: manage_permissions_group.png
+    submenus:
+      create_permissions_group:
+        permission: create_permissions_groups
+        url:
+          controller: permissions_groups
+          action: new
+      manage_permissions_group:
+        permission: list_permissions_groups
+        url:
+          controller: permissions_groups
+          action: index
+  custom_fields:
+    icon: manage_custom_field.png
+    submenus:
+      manage_custom_fields:
+        permission: list_custom_fields
+        url:
+          controller: custom_fields
+          action: index
+  settings:
+    icon: gear.png
+    submenus:
+        config_result_control:
+          permission: config_open_portal
+          url:
+            controller: settings
+            action: edit
+            id: open_portal
+user:
+  my_user:
+    url:
+      controller: users/registrations
+      action: edit

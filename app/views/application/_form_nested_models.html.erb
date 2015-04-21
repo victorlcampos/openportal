@@ -1,0 +1,12 @@
+<% f.object.class.nested_attributes_options.keys.each do |nested_model| %>
+  <h3><%= t("#{nested_model}") %></h3>
+  <div id="<%= nested_model %>">
+
+    <%= f.simple_fields_for nested_model do |fr| %>
+      <%= render 'form_nested_attributes', f: fr, nested_model: nested_model, exclude_associations: exclude_associations %>
+    <% end %>
+
+    <%= link_to_add_association t('form.add'), f, nested_model, partial: 'application/form_nested_attributes', class: 'btn',
+    render_options: {locals: { nested_model: nested_model, exclude_associations: exclude_associations }} %>
+  </div>
+<% end %>

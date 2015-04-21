@@ -1,0 +1,11 @@
+pt-BR:
+  admin:
+    administrative_menus: 'Menu administrativo'
+  table:
+    export: 'Exportar'
+    filter: 'Filtro'
+  form:
+    view: 'Visualizar'
+    new: 'Novo'
+    edit: 'Editar'
+    delete: 'Deletar'

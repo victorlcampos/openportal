@@ -1,0 +1,9 @@
+open_portal:
+  permission: config_open_portal
+  inputs:
+    can_sign_up:
+      as: ':boolean'
+    can_cancel_account:
+      as: ':boolean'
+    can_recover_password:
+      as: ':boolean'

@@ -1,0 +1,2 @@
+<h3><%= t(snake_case_model_name) %></h3>
+<%= render 'show_content', resource: @resource, attributes: show_attributes, prefix_attr: "#{"#{namespaces.join('.')}." unless namespaces.blank?}#{snake_case_model_name}.attributes" %>

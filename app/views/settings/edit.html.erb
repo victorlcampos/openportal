@@ -1,0 +1,18 @@
+<%= simple_form_for @resource, url: url_for(action: :update, controller: 'settings'), method: :put do |f| %>
+
+  <%= f.simple_fields_for :preferences, OpenStruct.new(@resource.preferences) do |ff| %>
+
+    <% OPEN_PORTAL_CONFIGS[@key][:inputs].each do |name, config| %>
+      <% if config %>
+        <% c = {} %>
+        <% config.each {|k, v| c[k.to_sym] = eval(v) } %>
+        <%= ff.input name, c %>
+      <% else %>
+        <%= ff.input name %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+  <%= f.button :submit %>
+<% end %>
