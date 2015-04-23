@@ -103,7 +103,11 @@ class ApplicationController < ActionController::Base
 
   def find_all_resources
     @q = model_class.ransack(params[:q])
-    @resources = @q.result
+    @resources = pagination? ? @q.result.page(params[:page]) : @q.result
+  end
+
+  def pagination?
+    !params[:format] || params[:format] == 'html'
   end
 
   # TODO: Faze ser configuravel pelo usuario

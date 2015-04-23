@@ -10,6 +10,7 @@ gem 'simple_form'
 gem "cocoon"
 gem 'chosen-rails'
 gem 'ransack'
+gem 'kaminari'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

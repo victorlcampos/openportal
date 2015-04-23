@@ -7,3 +7,4 @@
 } %>
 
 <%= render 'widgets/table', table: Resource::ResourceTable.new(@resources, @q, current_user, table_config) %>
+<%= paginate @resources %>
