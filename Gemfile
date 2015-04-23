@@ -7,7 +7,7 @@ gem 'whenever'
 
 # forms
 gem 'simple_form'
-gem "cocoon"
+gem 'cocoon'
 gem 'chosen-rails'
 gem 'ransack'
 gem 'kaminari'
