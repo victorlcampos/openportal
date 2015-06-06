@@ -4,17 +4,24 @@ gem 'axlsx_rails'
 gem 'whenever'
 
 # plugins
+gem 'open_portal_clients', path: '../open_portal_clients'
+gem 'open_portal_result_control', path: '../open_portal_result_control'
 
 # forms
 gem 'simple_form'
 gem 'cocoon'
+
+# TODO: Acompanhar a Issue https://github.com/tsechingho/chosen-rails/issues/70
+gem 'compass-rails', github: 'Compass/compass-rails', branch: 'master'
 gem 'chosen-rails'
+
 gem 'ransack'
 gem 'kaminari'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

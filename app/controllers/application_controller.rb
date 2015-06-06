@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
   helper_method :snake_case_model_name, :index_attributes, :exclude_index_attributes,
                 :index_filter_attributes, :exclude_index_filter_attributes,
                 :show_attributes, :exclude_show_attributes,
-                :form_attributes, :form_attributes_config,
-                :exclude_form_attributes, :namespaces, :model_class
+                :form_attributes, :form_attributes_config, :exclude_form_attributes,
+                :namespaces, :model_class
 
   def index; end
 

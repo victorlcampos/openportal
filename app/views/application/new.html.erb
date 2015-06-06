@@ -1,1 +1,7 @@
-<%= render 'form', resource: @resource %>
+<% form_config = {
+  form_attributes: form_attributes,
+  exclude_form_attributes: exclude_form_attributes,
+  form_attributes_config: form_attributes_config
+} %>
+
+<%= render 'widgets/form', form: Resource::ResourceForm.new(@resource, 1, form_config) %>

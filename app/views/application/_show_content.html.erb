@@ -6,7 +6,7 @@
     </div>
   <% end %>
 
-  <% if resource.respond_to? :available_custom_fields %>
+  <% if resource.class.respond_to? :available_custom_fields %>
     <% resource.custom_fields_values.each do |attribute| %>
       <div class="attribute">
         <span class='attribute-name'><%= t("#{prefix_attr}.#{attribute.field_name}") %>:</span>

@@ -1,9 +1,0 @@
-<% attributes.each do |attribute| %>
-  <% unless exclude_form_attributes.find { |e| /#{e}/ =~ attribute }  %>
-    <% if form_attributes_config[attribute.to_sym] %>
-      <%= f.input attribute, form_attributes_config[attribute.to_sym] %>
-    <% else %>
-      <%= f.input attribute %>
-    <% end %>
-  <% end %>
-<% end %>

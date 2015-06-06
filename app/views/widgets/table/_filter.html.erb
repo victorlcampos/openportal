@@ -7,7 +7,7 @@
     <% filters.in_groups_of(in_group_of, false).each do |inputs| %>
       <div class="inputs">
         <% inputs.each do |input| %>
-          <div class="label">
+          <div class="input">
             <%= f.label        "#{input}_cont" %>
             <%= f.search_field "#{input}_cont" %>
           </div>
@@ -15,6 +15,10 @@
       </div>
     <% end %>
 
-    <%= f.submit class: 'btn' %>
+    <div class="inputs">
+      <div class="input">
+        <%= f.submit class: 'btn' %>
+      </div>
+    </div>
   <% end %>
 </div>

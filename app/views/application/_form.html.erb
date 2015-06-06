@@ -1,7 +1,0 @@
-<%= simple_form_for resource do |f| %>
-  <h3><%= t(snake_case_model_name) %></h3>
-  <%= render 'error_explanation', resource: resource %>
-  <%= render 'form_content', f: f, resource: resource, attributes: form_attributes, exclude_associations: [snake_case_model_name] %>
-
-  <%= f.button :submit %>
-<% end %>

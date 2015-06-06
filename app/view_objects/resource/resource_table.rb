@@ -21,13 +21,7 @@ module Resource
     end
 
     def column_names
-      return @column_names if @column_names
-
-      @column_names = resource_attributes
-
-      @column_names << '' if can_view?
-      @column_names << '' if can_edit?
-      @column_names << '' if can_delete?
+      @column_names ||= initialize_coumn_names
     end
 
     def column_values
@@ -39,6 +33,15 @@ module Resource
     end
 
     private
+
+    def initialize_coumn_names
+      column_names = resource_attributes
+      column_names << '' if can_view?
+      column_names << '' if can_edit?
+      column_names << '' if can_delete?
+
+      column_names
+    end
 
     def initialize_column_values
       columns = {}

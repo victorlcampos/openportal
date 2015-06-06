@@ -13,16 +13,12 @@ module Customizable
 
   class_methods do
     def customizable_model_name
-      @customizable_model_name ||= name.split('::')[-1].gsub(/(.)([A-Z])/,'\1_\2').downcase.pluralize.to_sym
+      @customizable_model_name ||= name.split('::')[-1].gsub(/(.)([A-Z])/, '\1_\2').downcase.pluralize.to_sym
     end
 
     def available_custom_fields
       CustomField.where(customizable_model_name: customizable_model_name)
     end
-  end
-
-  def available_custom_fields
-    @available_custom_fields ||= self.class.available_custom_fields
   end
 
   private
@@ -34,7 +30,7 @@ module Customizable
   def initialize_fields_values
     values = {}
 
-    available_custom_fields.each do |cf|
+    self.class.available_custom_fields.each do |cf|
       next if find_and_initialize_custom_field_value(cf, values)
 
       cfv = custom_fields_values.build(custom_field_id: cf.id)

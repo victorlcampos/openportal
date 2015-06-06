@@ -1,3 +1,35 @@
+GIT
+  remote: git://github.com/Compass/compass-rails.git
+  revision: 4c7cf5cd94de275401847c1948a6c3e1f43b3d4a
+  branch: master
+  specs:
+    compass-rails (2.0.4)
+      compass (~> 1.0.0)
+      sass-rails (< 5.1)
+      sprockets (< 2.13)
+
+GIT
+  remote: git://github.com/svenfuchs/rails-i18n.git
+  revision: d73fb5475880e9baf7d43cd799bdf2787c79136b
+  branch: master
+  specs:
+    rails-i18n (4.0.4)
+      i18n (~> 0.6)
+      railties (~> 4.0)
+
+PATH
+  remote: ../open_portal_clients
+  specs:
+    open_portal_clients (0.0.1)
+      rails (~> 4.2.0)
+
+PATH
+  remote: ../open_portal_result_control
+  specs:
+    open_portal_result_control (0.0.1)
+      open_portal_clients
+      rails (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -112,8 +144,6 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    compass-rails (2.0.1)
-      compass (~> 1.0.0)
     concord (0.1.5)
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
@@ -145,6 +175,7 @@ GEM
     haml (4.0.6)
       tilt
     highline (1.6.21)
+    hike (1.2.3)
     hirb (0.7.3)
     htmlentities (4.3.3)
     http-cookie (1.0.2)
@@ -298,8 +329,11 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     spring (1.3.4)
-    sprockets (3.0.2)
+    sprockets (2.12.3)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
       rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
     sprockets-rails (2.2.4)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -347,12 +381,16 @@ DEPENDENCIES
   chosen-rails
   cocoon
   coffee-rails (~> 4.1.0)
+  compass-rails!
   devise
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
   metric_fu
+  open_portal_clients!
+  open_portal_result_control!
   rails (= 4.2.1)
+  rails-i18n!
   ransack
   rubocop
   sass-rails (~> 5.0)
