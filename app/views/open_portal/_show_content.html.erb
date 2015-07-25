@@ -1,0 +1,40 @@
+<div class="show">
+  <% attributes.each do |attribute| %>
+    <div class="attribute">
+      <span class='attribute-name'><%= t("#{prefix_attr}.#{attribute}") %>:</span>
+      <span class='attribute-value'><%= resource.send(attribute) %></span>
+    </div>
+  <% end %>
+
+  <% if resource.class.respond_to? :available_custom_fields %>
+    <% resource.custom_fields_values.each do |attribute| %>
+      <div class="attribute">
+        <span class='attribute-name'><%= t("#{prefix_attr}.#{attribute.field_name}") %>:</span>
+        <span class='attribute-value'><%= attribute.value %></span>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% [:belongs_to, :has_one].each do |association| %>
+    <% resource.class.reflect_on_all_associations(association).reject { |value| value.options.has_key?(:through) }.map(&:name).each do |nested_model| %>
+      <% obj = resource.send(nested_model) %>
+      <div class="attribute">
+        <span class='attribute-name'><%= t("#{prefix_attr}.#{nested_model}") %>:</span>
+        <span class='attribute-value'><%= obj.to_s %></span>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% [:has_many, :has_many_and_belongs_to].each do |association| %>
+    <% resource.class.reflect_on_all_associations(association).reject { |value| value.options.has_key?(:through) }.map(&:name).each do |nested_model| %>
+      <% unless nested_model == :custom_fields_values %>
+        <% resource.send(nested_model).each do |obj| %>
+          <h4><%= t("#{nested_model}") %></h4>
+          <div class='nested-model' id="<%= nested_model %>">
+            <%= render 'show_content', resource: obj, attributes: obj.class.attribute_names, prefix_attr: "#{prefix_attr}.#{nested_model}.attributes" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

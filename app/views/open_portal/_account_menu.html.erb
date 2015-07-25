@@ -1,0 +1,9 @@
+<ul class='line-menu'>
+  <% OPEN_PORTAL_MENUS[:account].each do |menu_name, menu_configuration| %>
+    <% if !menu_configuration[:permission] || current_user.can?(menu_configuration[:permission]) %>
+      <li>
+        <%= link_to t("menu.#{menu_name}"), menu_configuration[:url], ( menu_configuration[:args] || {}) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

@@ -1,0 +1,4 @@
+hello_world:
+  permission: view_tile_hello_world
+  size_x: 4
+  size_y: 1

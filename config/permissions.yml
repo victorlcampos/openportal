@@ -1,0 +1,24 @@
+users:
+  - admin
+  - list_users
+  - create_users
+  - edit_users
+  - delete_users
+
+permissions_groups:
+  - list_permissions_groups
+  - create_permissions_groups
+  - edit_permissions_groups
+  - delete_permissions_groups
+
+custom_fields:
+  - list_custom_fields
+  - create_custom_fields
+  - edit_custom_fields
+  - delete_custom_fields
+
+settings:
+  - config_open_portal
+
+tiles:
+  - view_tile_hello_world

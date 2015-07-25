@@ -1,0 +1,11 @@
+<% table_config = {
+  index_attributes: index_attributes,
+  filter_attributes: index_filter_attributes,
+  exclude_index_attributes: exclude_index_attributes,
+  exclude_index_filter_attributes: exclude_index_filter_attributes,
+  params: params,
+  namespace_url: namespace_url
+} %>
+
+<%= render 'widgets/table', table: Resource::ResourceTable.new(@resources, @q, current_user, table_config) %>
+<%= paginate @resources %>

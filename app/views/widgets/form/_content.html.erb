@@ -1,0 +1,13 @@
+<% attributes.in_groups_of(in_group_of, false).each do |inputs| %>
+  <div class="inputs">
+    <% inputs.each do |input| %>
+      <% if input[:name] %>
+        <%= f.input input[:name], input[:config] %>
+      <% elsif input[:association_name] %>
+        <%= f.association input[:association_name], input[:config] %>
+      <% elsif input[:nested_name] %>
+        <%= render 'widgets/form/nested', f: f, input: input, in_group_of: in_group_of %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

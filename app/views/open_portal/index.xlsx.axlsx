@@ -1,0 +1,48 @@
+def attribute_name(attribute, prefix)
+  I18n.t("#{prefix}.#{attribute}")
+end
+
+def create_worksheet(wb, name, klass, resources, prefix)
+  wb.add_worksheet(name: name) do |sheet|
+    header = []
+
+    klass.attribute_names.each do |attribute|
+      header << attribute_name(attribute, prefix)
+    end
+
+    if klass.respond_to? :available_custom_fields
+      klass.available_custom_fields.each do |cf|
+        header << attribute_name(cf.field_name, prefix)
+      end
+    end
+
+    sheet.add_row header
+
+    resources.each do |resource|
+      body = []
+      klass.attribute_names.each do |attribute|
+        body << resource.send(attribute)
+      end
+
+      if klass.respond_to? :available_custom_fields
+        klass.available_custom_fields.each do |cf|
+          body << resource.send(cf.field_name)
+        end
+      end
+
+      sheet.add_row body
+    end
+  end
+
+  [:has_many, :has_many_and_belongs_to].each do |association_type|
+    klass.reflect_on_all_associations(association_type).reject { |value| value.options.has_key?(:through) }.each do |association|
+      unless association.klass == CustomFieldValue
+        create_worksheet(wb, association.name.to_s, association.klass, association.klass.all, "#{prefix}.#{association.name.to_s}.attributes")
+      end
+    end
+  end
+end
+
+wb = xlsx_package.workbook
+# wb.add_worksheet(name: I18n.t("#{namespaces.join('.')}.#{snake_case_model_name}")) do |sheet|
+create_worksheet(wb, snake_case_model_name.to_s, model_class, @resources, "#{"#{namespaces.join('.')}." unless namespaces.blank?}#{snake_case_model_name}.attributes")

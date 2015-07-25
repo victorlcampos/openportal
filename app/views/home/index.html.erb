@@ -1,0 +1,9 @@
+<div data-ui-module='Dash'>
+  <ul>
+    <% OPEN_PORTAL_TILES.each do |tile_name, config| %>
+      <% if current_user.can? config['permission'] %>
+        <li data-ui-module='Tile' data-row='1' data-col='1' data-tile-name='<%= tile_name %>' data-sizex='<%= config['size_x'] %>' data-sizey='<%= config['size_y'] %>'></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

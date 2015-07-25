@@ -1,0 +1,9 @@
+<div id="<%= chart.object_id %>"></div>
+<%= javascript_tag do %>
+  var data = {
+    labels: <%= raw chart.labels.as_json %>,
+    series: <%= raw chart.series.as_json %>
+  };
+
+  new Chartist.<%= chart.type %>($('#<%= chart.object_id %>').get(0), data, <%= (chart.options.is_a? Hash) ? raw(chart.options.to_json) : raw(chart.options) %>);
+<% end %>

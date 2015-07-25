@@ -1,0 +1,11 @@
+one:
+  id: 1
+  email: 'test@test.com'
+  authentication_token: '123456789012345'
+  encrypted_password: "$2a$04$HgtX1HVL3iLqn.VBxaiD/exKyrGZz1rny08GT.ijDHDRTAU9FPcva"
+
+two:
+  id: 2
+  email: 'test2@test.com'
+  authentication_token: '246802468024680'
+  encrypted_password: "$2a$04$HgtX1HVL3iLqn.VBxaiD/exKyrGZz1rny08GT.ijDHDRTAU9FPcva"

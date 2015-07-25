@@ -1,0 +1,36 @@
+.chosen-container-single .chosen-single, .chosen-container-active.chosen-with-drop .chosen-single {
+  position: inherit;
+  padding: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: inherit;
+  border: 0px;
+  box-shadow: 0 0 0px #fff inset, 0 0px 0px rgba(0, 0, 0, 0);
+  color: inherit;
+}
+
+.chosen-container-single .chosen-single .search-choice-close {
+  top: 9px;
+}
+
+.chosen-container-single .chosen-single div {
+  top: 3px;
+}
+
+.chosen-container .chosen-drop {
+  border: 1px solid #DADADA;
+}
+
+.chosen-container .chosen-results {
+  color: inherit;
+}
+
+.chosen-container .chosen-results li.highlighted {
+  background-color: #444;
+  background-image: inherit;
+  background-size: inherit;
+  background-image: inherit;
+  background-image: inherit;
+  background-image: inherit;
+  background-image: inherit;
+}

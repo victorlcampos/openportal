@@ -1,0 +1,32 @@
+.btn {
+  display: inline-block;
+  background-color: #ccc;
+  color: #444;
+  padding: 10px 20px;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 0px;
+  margin-bottom: 16px;
+  margin-top: 2px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #0068B4;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #009835;
+}
+
+.btn-error {
+  color: #fff;
+  background-color: #CC0000;
+}
+
+.btn-warning {
+  color: #fff;
+  background-color: #F28E00;
+}
