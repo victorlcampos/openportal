@@ -1,5 +1,5 @@
 <ul class='menu'>
-  <li><%= link_to 'HOME', '/', class: 'btn '%>
+  <li><%= link_to t('menu.home'), home_path, class: 'btn '%>
     <ul>
       <% OPEN_PORTAL_MENUS[:user].each do |menu_name, menu_configuration| %>
         <% if !menu_configuration[:permission] || current_user.can?(menu_configuration[:permission]) %>

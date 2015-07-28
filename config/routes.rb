@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :tiles do
-  get 'hello_world/index'
+    get 'hello_world/index'
   end
 
   devise_for :users, controllers: {
@@ -31,5 +31,5 @@ Rails.application.routes.draw do
   resources :custom_fields
   resources :settings, only: [:edit, :update]
 
-  root 'home#index'
+  get 'home' => 'home#index', as: 'home'
 end
