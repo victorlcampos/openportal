@@ -5,11 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-  admin = User.create(email: 'admin@admin.com', password: 'admin123', password_confirmation: 'admin123')
-  admin_group = PermissionsGroup.new(name: :admin)
-  admin_group.users << admin
-  OPEN_PORTAL_PERMISSIONS.each do |key, permissions|
-    admin_group.permissions.concat(permissions)
-  end
-  admin_group.save!

@@ -14,7 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require chosen-jquery
-//= require livequery.min
 //= require cocoon
 //= require_tree ./vendor
 //= require_self
@@ -25,7 +24,7 @@ var OpenPortal = {};
 OpenPortal.ui  = {};
 
 var initModules = function() {
-  $('[data-ui-module]').livequery(function() {
+  $(document).livequery('[data-ui-module]', function() {
     OpenPortal.ui[$(this).data('ui-module')].init(this);
   });
 }
