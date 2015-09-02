@@ -6,6 +6,9 @@
   params: params,
   namespace_url: namespace_url
 } %>
-
-<%= render 'widgets/table', table: Resource::ResourceTable.new(@resources, @q, current_user, table_config) %>
-<%= paginate @resources %>
+<div class="div-cell cell-12">
+  <div class="content">
+    <%= render 'widgets/table', table: Resource::ResourceTable.new(@resources, @q, current_user, table_config) %>
+    <%= paginate @resources %>
+  </div>
+</div>

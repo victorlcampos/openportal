@@ -17,56 +17,66 @@
  *= require_tree ./widgets
  */
 
-*{margin: 0; padding: 0;}
+*{margin: 0; padding: 0; box-sizing: border-box;}
 
 html, body {
+  font-family: "Helvetica","Arial",sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+html {
   height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
+  font-family: Helvetica, Arial, sans-serif;
   background-color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  min-height: 100%;
+}
+
+a {
+  color: -webkit-link;
+  text-decoration: underline;
+  cursor: auto;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  color: #00acc1;
+  font-weight: 500;
 }
 
 
-#header {
+#left-menu {
   background-color: #FFFFFF;
-  margin-bottom: 10px;
-  padding: 25px 15px 25px 10px;
+  padding: 15px 15px 25px 10px;
+  display: inline-block;
+  height: 100%;
+  width: 20%;
+  float: left;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+  position: fixed;
+  z-index: 100;
 }
-
-#logo {
-  display: table-cell;
-}
-
 #logo img {
   vertical-align: middle;
   margin-right: 20px;
 }
 
-#user-menu {
-  display: table-cell;
-}
-
-#account-menu {
-  display: table-cell;
-  width: 100%;
-  text-align: right;
-}
-
-
 #content {
-  /*padding: 5px;
-
-  max-width: 95%;
-  margin: 0 auto;
-  background-color: #FFFFFF;
-  margin-top: 10px;
-  box-shadow: 0px 0px 15px #888888;*/
+  display: inline-block;
+  width: 80%;
+  margin-left: 20%;
+  height: 100%;
+  background-color: #f5f5f5;
+  position: fixed;
+  overflow: auto;
 }
 
 #content #main {
-  padding: 25px 15px 25px 0px;
-  /*border:1px solid #E4E4E4;*/
+  padding: 15px;
   height: 100%;
 }

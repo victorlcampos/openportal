@@ -1,0 +1,16 @@
+ul.vertical-menu {
+  padding: 10px;
+  list-style-type: none;
+  li {
+    padding: 10px;
+    a {
+      margin: 16px;
+      font-weight: 400;
+      color: rgba(0,0,0,.66);
+      position: relative;
+      display: table;
+      line-height: 24px;
+      text-decoration: none;
+    }
+  }
+}

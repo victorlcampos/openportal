@@ -1,22 +1,26 @@
-<h1><%= t('admin.administrative_menus') %></h1>
-<div class="icon-menus">
-  <% OPEN_PORTAL_MENUS[:admin].each do |menu_name, menu_configuration| %>
-    <ul class='menu'>
-      <li>
-        <%= image_tag(menu_configuration[:icon], width: 64, height: 64) %>
-        <span> <%= t("menu.#{menu_name}") %> </span>
-        <ul>
-          <% menu_configuration[:submenus].each do |submenu_name, submenu_configuration| %>
+<div class="div-cell cell-12">
+  <h1><%= t('admin.administrative_menus') %></h1>
+  <div class="content">
+    <div class="icon-menus">
+      <% OPEN_PORTAL_MENUS[:admin].each do |menu_name, menu_configuration| %>
+        <ul class='menu'>
+          <li>
+            <%= image_tag(menu_configuration[:icon], width: 64, height: 64) %>
+            <span> <%= t("menu.#{menu_name}") %> </span>
+            <ul>
+              <% menu_configuration[:submenus].each do |submenu_name, submenu_configuration| %>
 
-            <% if !submenu_configuration[:permission] || current_user.can?(submenu_configuration[:permission]) %>
-              <li>
-                <%= link_to t("menu.#{submenu_name}"), submenu_configuration[:url] %>
-              </li>
-            <% end %>
+                <% if !submenu_configuration[:permission] || current_user.can?(submenu_configuration[:permission]) %>
+                  <li>
+                    <%= link_to t("menu.#{submenu_name}"), submenu_configuration[:url] %>
+                  </li>
+                <% end %>
 
-          <% end %>
+              <% end %>
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

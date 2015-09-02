@@ -1,14 +1,6 @@
 .form {
-  display: table;
   width: 100%;
   border-spacing: 5px;
-
-  h1, h2, h3, h4, h5, h6 {
-    padding: 0px 0px 10px 40px;
-    display: table-caption;
-    border-bottom:1px solid #E4E4E4;
-    margin: -10px -15px 30px -10px;
-  }
 
   h1>span {
       display: block;
@@ -21,11 +13,9 @@
   }
 
   .inputs {
-    display: table-row;
     width: 100%;
 
     .input {
-      display: table-cell;
       padding: 5px;
     }
 
@@ -78,8 +68,7 @@
     }
 
     .nested {
-      display: table;
-      width: 96%;
+      width: 95%;
       margin-left: 5%;
       .nested-fields {
         display: table;
@@ -90,7 +79,6 @@
     }
 
     div.date {
-      display: table;
       width: 101%;
       table-layout: fixed;
       margin-bottom: 18px;
@@ -101,7 +89,6 @@
         margin-bottom: 2px;
       }
       > div {
-        display: table-cell;
         left: -5px;
       }
     }

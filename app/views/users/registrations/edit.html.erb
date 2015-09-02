@@ -1,10 +1,14 @@
-<% form_config = {
-  form_attributes: [:email, :password, :password_confirmation, :current_password],
-  exclude_form_attributes: [],
-  form_attributes_config: {},
-  exclude_associations: ['.*'],
-  form_url: resource,
-  form_config: {as: resource_name, url: registration_path(resource_name), html: { method: :put }}
-} %>
+<div class="div-cell cell-12">
+  <div class="content">
+    <% form_config = {
+      form_attributes: [:email, :password, :password_confirmation, :current_password],
+      exclude_form_attributes: [],
+      form_attributes_config: {},
+      exclude_associations: ['.*'],
+      form_url: resource,
+      form_config: {as: resource_name, url: registration_path(resource_name), html: { method: :put }}
+      } %>
 
-<%= render 'widgets/form', form: Resource::ResourceForm.new(resource, 1, form_config) %>
+    <%= render 'widgets/form', form: Resource::ResourceForm.new(resource, 1, form_config) %>
+  </div>
+</div>

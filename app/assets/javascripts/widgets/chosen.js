@@ -9,7 +9,7 @@ OpenPortal.ui.Chosen = function() {
     return {};
   }
 
-  $('select').livequery(function() { init(this) });
+  $(document).livequery('select', function() { init(this) });
   $(document).ready(function() { init('select') });
 
   return {init: init}
