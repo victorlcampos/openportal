@@ -3,13 +3,13 @@
 
   <div id="<%= input[:nested_name] %>">
     <%= f.simple_fields_for input[:nested_name] do |fr| %>
-      <%= render 'widgets/form/nested_attributes', f: fr, input: input, in_group_of: in_group_of %>
+      <%= render 'widgets/form/nested_attributes', f: fr, input: input, cell_count: cell_count %>
     <% end %>
 
     <% if input[:many] %>
       <%= link_to_add_association t('form.add'), f, input[:nested_name],
         partial: 'widgets/form/nested_attributes', class: 'btn',
-        render_options: {locals: { input: input, in_group_of: in_group_of }} %>
+        render_options: {locals: { input: input, cell_count: cell_count }} %>
     <% end %>
   </div>
 </div>

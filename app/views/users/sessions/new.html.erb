@@ -1,18 +1,15 @@
+<div class="div-cell cell-12">
+  <div class="content">
+    <% form_config = {
+      form_attributes: [:email, :password],
+      exclude_form_attributes: [],
+      form_attributes_config: {},
+      exclude_associations: ['.*'],
+      form_url: resource,
+      form_config: {as: resource_name, url: session_path(resource_name)}
+      } %>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <h3>Log in</h2>
-  <div class="inputs">
-    <%= f.input :email, required: false, autofocus: true %>
+      <%= render 'widgets/form', form: Resource::ResourceForm.new(resource, 12, form_config) %>
+      <%= render "users/shared/links" %>
+    </div>
   </div>
-  <div class="inputs">
-    <%= f.input :password, required: false %>
-  </div>
-  <div class="inputs">
-  <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>

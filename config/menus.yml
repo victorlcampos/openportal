@@ -44,6 +44,7 @@ admin:
             id: open_portal
 user:
   my_user:
+    icon: 'fa-user'
     url:
       controller: /users/registrations
       action: edit

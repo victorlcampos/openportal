@@ -1,14 +1,16 @@
 <ul class='vertical-menu'>
-  <li><%= link_to t('menu.home'), home_path %>
+  <li><i class="fa fa-home"></i><%= link_to t('menu.home'), home_path %></li>
   <% OPEN_PORTAL_MENUS[:user].each do |menu_name, menu_configuration| %>
     <% if !menu_configuration[:permission] || current_user.can?(menu_configuration[:permission]) %>
       <li>
+        <i class="fa <%= menu_configuration[:icon] %>"></i>
         <%= link_to t("menu.#{menu_name}"), menu_configuration[:url], ( menu_configuration[:args] || {}) %>
       </li>
     <% end %>
   <% end %>
   <% if current_user.can?('admin') %>
     <li>
+      <i class="fa fa-adn"></i>
       <%= link_to t("menu.admin"), admin_index_path %>
     </li>
   <% end %>

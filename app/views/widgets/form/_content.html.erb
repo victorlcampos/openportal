@@ -1,4 +1,4 @@
-<% attributes.in_groups_of(in_group_of, false).each do |inputs| %>
+<% attributes.in_groups_of(cell_count, false).each do |inputs| %>
   <div class="inputs">
     <% inputs.each do |input| %>
       <% if input[:name] %>
@@ -6,7 +6,7 @@
       <% elsif input[:association_name] %>
         <%= f.association input[:association_name], input[:config] %>
       <% elsif input[:nested_name] %>
-        <%= render 'widgets/form/nested', f: f, input: input, in_group_of: in_group_of %>
+        <%= render 'widgets/form/nested', f: f, input: input, cell_count: cell_count %>
       <% end %>
     <% end %>
   </div>

@@ -1,5 +1,5 @@
 <div class="nested-fields">
-  <%= render 'widgets/form/content', f: f, attributes: input[:attributes], in_group_of: (input[:in_group_of] || in_group_of) %>
+  <%= render 'widgets/form/content', f: f, attributes: input[:attributes], cell_count: (input[:cell_count] || cell_count) %>
 
   <% if input[:many] %>
     <%= link_to_remove_association t('form.remove'), f, class: 'btn' %>

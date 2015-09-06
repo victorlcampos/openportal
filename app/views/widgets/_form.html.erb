@@ -2,7 +2,7 @@
   <h3><%= form.title %></h3>
   <%= render 'widgets/form/error_explanation', resource: form.resource %>
 
-  <%= render "widgets/form/content", f: f, attributes: form.attributes, in_group_of: form.in_group_of %>
+  <%= render "widgets/form/content", f: f, attributes: form.attributes, cell_count: form.cell_count %>
 
   <%= f.button :submit %>
 <% end %>

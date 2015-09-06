@@ -1,9 +1,9 @@
 module Resource
   class ResourceForm < Form
-    def initialize(resource, in_group_of, args)
+    def initialize(resource, cell_count, args)
       @resource = resource
       @resource_class = resource.class
-      @in_group_of = in_group_of
+      @cell_count = cell_count
 
       @exclude_form_attributes = args[:exclude_form_attributes]
       @form_attributes = find_form_attributes(args[:form_attributes])
@@ -38,7 +38,7 @@ module Resource
       form_attributes.each do |attribute|
         attributes << {
           name: attribute,
-          config: @form_attributes_config[attribute.to_sym] || {}
+          config: (@form_attributes_config[attribute.to_sym] || {}).merge(wrapper_html: {class: "cell-#{cell_count}"})
         }
       end
 
@@ -54,7 +54,7 @@ module Resource
 
           attributes << {
             association_name: nested_model,
-            config: @form_attributes_config[nested_model.to_sym] || {}
+            config: (@form_attributes_config[nested_model.to_sym] || {}).merge(wrapper_html: {class: "cell-#{cell_count}"})
           }
         end
       end

@@ -1,13 +1,13 @@
-<% in_group_of ||= 3 %>
+<% cell_count ||= 6 %>
 
 <div class="table-filter">
   <%= search_form_for q, html: { class: 'form' } do |f| %>
     <h3><%= t('table.filter') %></h3>
 
-    <% filters.in_groups_of(in_group_of, false).each do |inputs| %>
+    <% filters.in_groups_of(cell_count, false).each do |inputs| %>
       <div class="inputs">
         <% inputs.each do |input| %>
-          <div class="input">
+          <div class="input cell-<%= cell_count %>">
             <%= f.label        "#{input}_cont" %>
             <%= f.search_field "#{input}_cont" %>
           </div>
