@@ -12,6 +12,7 @@ module Resource
       @exclude_associations = args[:exclude_associations]
       @form_url = args[:form_url]
       @form_config = args[:form_config]
+      @submit_title = args[:submit_title] || t('form.send')
     end
 
     def attributes
@@ -48,15 +49,13 @@ module Resource
     def initialize_form_association_attributes(model_class, exclude_associations)
       attributes = []
 
-      [:belongs_to].each do |association|
-        associations_names(model_class, association).each do |nested_model|
-          next if exclude_associations.find { |e| e ? /#{e.downcase}/ =~ nested_model : false }
+      associations_names(model_class, :belongs_to).each do |nested_model|
+        next if exclude_associations.find { |e| e ? /#{e.downcase}/ =~ nested_model : false }
 
-          attributes << {
-            association_name: nested_model,
-            config: (@form_attributes_config[nested_model.to_sym] || {}).merge(wrapper_html: {class: "cell-#{cell_count}"})
-          }
-        end
+        attributes << {
+          association_name: nested_model,
+          config: (@form_attributes_config[nested_model.to_sym] || {}).merge(wrapper_html: {class: "cell-#{cell_count}"})
+        }
       end
 
       attributes
@@ -81,6 +80,8 @@ module Resource
       has_many_associations = associations_names(model_class, :has_many)
 
       model_class.nested_attributes_options.keys.each do |nested_model|
+        next if exclude_associations.find { |e| e ? /#{e.downcase}/ =~ nested_model : false }
+
         many = has_many_associations.include? nested_model ? true : false
         attributes << initialize_form_nested_attribute(model_class, nested_model, exclude_associations, many)
       end
