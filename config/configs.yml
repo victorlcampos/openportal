@@ -5,5 +5,5 @@ open_portal:
       as: ':boolean'
     can_cancel_account:
       as: ':boolean'
-    can_recover_password:
-      as: ':boolean'
+    logo_url:
+      as: ':url'

@@ -12,7 +12,7 @@
   <body>
     <div id='left-menu'>
       <div id='logo'>
-        <%= link_to image_tag('logo.png', style: 'max-height: 65px' ), home_path %>
+        <%= link_to image_tag((Setting[:open_portal].preferences[:logo_url].blank? ? 'logo.png' : Setting[:open_portal].preferences[:logo_url]), style: 'max-height: 65px' ), home_path %>
       </div>
 
       <% if user_signed_in? %>
