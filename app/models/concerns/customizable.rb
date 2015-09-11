@@ -3,7 +3,7 @@ module Customizable
 
   included do
     CustomField::CUSTOMIZABLE_MODEL_NAMES << customizable_model_name
-    has_many :custom_fields_values, as: :customizable, class: CustomFieldValue, dependent: :destroy, autosave: true
+    has_many :custom_fields_values, as: :customizable, class_name: 'CustomFieldValue', dependent: :destroy, autosave: true
 
     after_initialize :create_custom_field_methods
 
