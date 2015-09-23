@@ -22,6 +22,7 @@ class Pusher
     n.app = @app
     n.registration_ids = registration_ids
     n.data = { message: message }
+    n.content_available = true
     n.save!
   end
 end
