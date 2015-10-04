@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627023246) do
+ActiveRecord::Schema.define(version: 20151004150537) do
 
   create_table "custom_field_values", force: :cascade do |t|
     t.integer  "custom_field_id"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20150627023246) do
     t.integer  "priority"
     t.text     "url_args"
     t.string   "category"
+    t.boolean  "content_available"
   end
 
   add_index "rpush_notifications", ["app_id", "delivered", "failed", "deliver_after"], name: "index_rapns_notifications_multi"

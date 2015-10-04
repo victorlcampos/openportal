@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openportal (1.0.11)
+    openportal (1.0.12)
       axlsx_rails
       chosen-rails
       cocoon
